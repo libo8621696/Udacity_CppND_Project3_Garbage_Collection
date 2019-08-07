@@ -1,7 +1,17 @@
 # CppND-Garbage-Collector
 The final project for this Memory Management course is to implement your own version of a smart pointer. You can think of this as implementing your own garbage collector, to use a concept from other programming languages. Building this project will help you understand both how to work with pointers and references, and also why smart pointers are so important to modern C++ programming. Complete the implementations and verify that your implementation does not have any memory leaks!
 
-## Project TODO List:
+## Project solution downloads and settings
+
+```bash
+git clone https://github.com/libo8621696/Udacity_Project3_Garbage_Collection
+```
+
+```bash
+cd Udacity_Project3_Garbage_Collection
+```
+
+## Project DONE List:
 - Complete `Pointer` constructor
   ```cpp
     // Constructor for both initialized and uninitialized objects. -> see class interface
