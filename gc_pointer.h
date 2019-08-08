@@ -207,25 +207,25 @@ T *Pointer<T, size>::operator=(T *t){
     arraySize = ptr_details.arraySize;
     return addr;
 }
-// // Overload assignment of Pointer to Pointer.
-// template <class T, int size>
-// Pointer<T, size> &Pointer<T, size>::operator=(Pointer &rv){
+// Overload assignment of Pointer to Pointer.
+template <class T, int size>
+Pointer<T, size> &Pointer<T, size>::operator=(Pointer &rv){
 
-//     // TODO: Implement operator==
-//     // LAB: Smart Pointer Project Lab
-//     typename std::list<PtrDetails<T> >::iterator it = findPtrInfo(addr);
-//     it->refcount--;
+    // TODO: Implement operator==
+    // LAB: Smart Pointer Project Lab
+    typename std::list<PtrDetails<T> >::iterator it = findPtrInfo(addr);
+    it->refcount--;
 
-//     PtrDetails<T> ptr_details(rv.addr, rv.arraySize);
-//     it->refcount++;
+    PtrDetails<T> ptr_details(rv.addr, rv.arraySize);
+    it->refcount++;
 
-//     // Assign instance variables.
-//     addr = it->memPtr;
-//     isArray = it->isArray;
-//     arraySize = it->arraySize;
-//     return *this;
+    // Assign instance variables.
+    addr = it->memPtr;
+    isArray = it->isArray;
+    arraySize = it->arraySize;
+    return *this;
 
-// }
+}
 
 // A utility function that displays refContainer.
 template <class T, int size>
