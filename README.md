@@ -4,11 +4,11 @@ The final project for this Memory Management course is to implement your own ver
 ## Project solution downloads and settings
 
 ```bash
-git clone https://github.com/libo8621696/Udacity_Project3_Garbage_Collection
+git clone https://github.com/libo8621696/Udacity_CppND_Project3_Garbage_Collection
 ```
 
 ```bash
-cd Udacity_Project3_Garbage_Collection
+cd Udacity_CppND_Project3_Garbage_Collection
 ```
 
 ## Project DONE List:
@@ -82,20 +82,74 @@ T *Pointer<T, size>::operator=(T *t){
     return addr;
     }
 ```
+
+- Complete `Pointer` overload assignment of pointer to `Pointer`
+
+```cpp
+    // Overload assignment of pointer to Pointer.
+    template <class T, int size>
+    T *Pointer<T, size>::operator=(T *t){
+
+    // TODO: Implement operator==
+    // LAB: Smart Pointer Project Lab
+    typename std::list<PtrDetails<T> >::iterator it = findPtrInfo(addr);
+    it->refcount--;
+
+    PtrDetails<T> ptr_details(t, size);
+    it = findPtrInfo(t);
+    if(it == refContainer.end()){
+        refContainer.push_back(ptr_details);
+    }else{
+        it->refcount++;
+    }
+    
+    // Assign instance variables.
+    addr = ptr_details.memPtr;
+    isArray = ptr_details.isArray;
+    arraySize = ptr_details.arraySize;
+    return addr;
+    }
+```
+
+- Complete assignment of `Pointer` to `Pointer`
+
+```cpp
+// Overload assignment of Pointer to Pointer.
+    template <class T, int size>
+    Pointer<T, size> &Pointer<T, size>::operator=(Pointer &rv){
+
+    // TODO: Implement operator==
+    // LAB: Smart Pointer Project Lab
+    typename std::list<PtrDetails<T> >::iterator it = findPtrInfo(addr);
+    it->refcount--;
+
+    PtrDetails<T> ptr_details(rv.addr, rv.arraySize);
+    it->refcount++;
+
+    // Assign instance variables.
+    addr = it->memPtr;
+    isArray = it->isArray;
+    arraySize = it->arraySize;
+    return *this;
+
+    }
+```
+
 - Complete `Pointer` destructor
 
 ```cpp
     // Destructor for Pointer.
-template <class T, int size>
-Pointer<T, size>::~Pointer(){
+    template <class T, int size>
+    Pointer<T, size>::~Pointer(){
     
     // TODO: Implement Pointer destructor
     // Lab: New and Delete Project Lab
     typename std::list<PtrDetails<T> >::iterator it = findPtrInfo(addr);
     it->refcount--;
     collect();
-}
+    }
 ```
+
 - Complete `PtrDetails` class
 
 
